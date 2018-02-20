@@ -21,7 +21,7 @@ class User extends Component {
       <div className="User" style = {{minWidth:'200px'}}>
         <div>
           <h4>{this.props.user.name.first} {this.props.user.name.last}</h4>
-          <img src = {this.props.user.picture}/>
+          <img src = {this.props.user.picture} alt=''/>
           <div> Birthday <br/> {this.props.user.birthdayMonth} / {this.props.user.brithdayDay} / {this.props.user.birthdayYear} </div>
           <div> Id: {this.props.user.id } </div>
           <div> Gender: {this.props.user.gender } </div>
