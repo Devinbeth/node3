@@ -6,6 +6,18 @@ const session = require('express-session');
 const data = require('./data');
 const _ = require('lodash');
 
+const pizzaLover = function(req, res, next) {
+    if (req.session.favorite === 'pizza') {
+        next();
+    }
+    res.send(["Take your stinking not pizza loving person out of my sight."])
+}
+
+app.use((req, res, next) => {
+    console.log(req.url);
+    next();
+});
+
 app.use(bodyParser.json());
 app.use( session({
         secret: 'asdfljasdify2iuehifhgkdkk48&29(92j#@*(Yhklshf5yuq2438u21uithsHFSls9as&*lkHKktq3857128ruwiaghakjsdgh',
@@ -24,7 +36,7 @@ app.get('/api/get', (req, res)=>{
     res.send(`${req.session.favorite} is set to your favorite.`);
 });
 
-app.get('/api/users', (req, res)=>{
+app.get('/api/users', pizzaLover, (req, res)=>{
     let filtered = data;
     if (req.query) {
         if (req.query.hair) {
